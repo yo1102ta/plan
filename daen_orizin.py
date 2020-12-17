@@ -6,7 +6,6 @@ fig = plt.figure()
 
 #脚スタート
 Sx = 0
-#0,20
 Sy = -190
 
 #Linkの長さ
