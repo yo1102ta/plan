@@ -16,7 +16,7 @@ P = [[0 for a in range(2)] for b in range(20)]
 
 P2 = [[0 for a in range(2)] for b in range(8)]
 
-M = [[0 for a in range(2)] for b in range(20)]
+M1 = [[0 for a in range(2)] for b in range(20)]
 M2 = [[0 for a in range(2)] for b in range(8)]
 
 #print (P)
@@ -90,6 +90,9 @@ print("P(x,y)")
 print (P)
 print("P2(x,y)")
 print(P2)
+
+print("P_all(x,y)")
+print(P+P2)
 m=0
 while m<=19:
     if P[m][0]==0:
@@ -105,13 +108,13 @@ while m<=19:
     deg1 = math.degrees(tht1)
     deg2 = math.degrees(tht2)
 
-    M[m][0]=(round(deg1)+90)
-    M[m][1]=(round(deg2))
+    M1[m][0]=(round(deg1)+90)
+    M1[m][1]=(round(deg2))
 
     m+=1
 
 print("foot(ang1,ang2)")
-print(M)
+print(M1)
 
 m=0
 while m<=7:
@@ -135,3 +138,6 @@ while m<=7:
 
 print("foot2(ang1,ang2)")
 print(M2)
+
+print("foot_all(ang1,ang2)")
+print(M1+M2)

@@ -5,98 +5,80 @@ import matplotlib.pyplot as plt
 fig = plt.figure()
 
 #脚スタート
-Sx = 20
+Sx = 0
 Sy = -190
 
 #Linkの長さ
 L1 = 108.454
 L2 = 116.473
 
-P = [[0 for a in range(2)] for b in range(20)]
+P = [[0 for a in range(2)] for b in range(12)]
 
-P2 = [[0 for a in range(2)] for b in range(8)]
+P2 = [[0 for a in range(2)] for b in range(4)]
 
-M1 = [[0 for a in range(2)] for b in range(20)]
-M2 = [[0 for a in range(2)] for b in range(8)]
+M1= [[0 for a in range(2)] for b in range(12)]
+M2 = [[0 for a in range(2)] for b in range(4)]
 
 #print (P)
 
-r=10
-stride=40
+w=20
 h=20
 c=5
-C=0
-C2=5
-
+c1=0
+c2=0
+c3=0
+c4=0
 print("startX="+str(Sx))
 print("startY="+str(Sy))
 print("h="+str(h))
-print("r="+str(r))
-print("stride="+str(stride))
+print("w="+str(w))
+#print("stride="+str(stride))
 print("resolution="+str(c))
 
-Rx1=Sx
-Ry1=Sy+r
-Rx2=Sx+stride
-Ry2=Sy+r
 
 i=0
+while i<=15:
+    if i<=3:
+        c1+=c
+        P[i][0]=Sx
+        P[i][1]=Sy+c1
 
-while 5+i<=13:
-    P[5+i][0]=Sx+C
-    P[5+i][1]=Sy+h
+
+    elif i>3 and i<=7 :
+        c2+=c
+        P[i][0]=Sx+c2
+        P[i][1]=Sy+h
+
+
+    elif i>7 and i<=11 :
+        c3+=c
+        P[i][0]=Sx+w
+        P[i][1]=Sy+h-c3
+
+    elif i>11 and i<=15 :
+        c4+=c
+        P2[i-12][0]=Sx+w-c4
+        P2[i-12][1]=Sy
 
 
     i+=1
-    C+=c
 
-j=0
-rad1=240
-while j<=4:
-    rad = math.radians(rad1) #45°の時のラジアンを求める
-    x= r * math.cos(rad) #x座標を求める
-    y = r * math.sin(rad) #y座標を求める
-    #x=int(x)
-    #y=int(y)
-
-    P[j][0]=x+Rx1
-    P[j][1]=y+Ry1
-    j+=1
-    rad1-=30
-
-k=14
-rad2=60
-while k<=19:
-    rad = math.radians(rad2) #45°の時のラジアンを求める
-    x= r * math.cos(rad) #x座標を求める
-    y = r * math.sin(rad) #y座標を求める
-    #x=int(x)
-    #y=int(y)
-
-    P[k][0]=x+Rx2
-    P[k][1]=y+Ry2
-    k+=1
-    rad2-=30
-
-l=0
-while l<=7:
-    P2[l][0]=Sx+stride-C2
-    P2[l][1]=Sy
-
-    l+=1
-    C2+=c
 
 print("P(x,y)")
 print (P)
 print("P2(x,y)")
 print(P2)
-
 print("P_all(x,y)")
 print(P+P2)
+
 m=0
-while m<=19:
+while m<=11:
     if P[m][0]==0:
         P[m][0]+=0.000000001
+
+    if P[m][1]==0:
+        P[m][1]+=0.000000001
+
 #逆運動学計算↓
     L3 = math.sqrt((P[m][0]*P[m][0]) + (P[m][1]*P[m][1]))
     fai2 = math.acos(((L1*L1) + (L2*L2) - ( L3 * L3)) / (2*L1*L2))
@@ -117,7 +99,7 @@ print("foot(ang1,ang2)")
 print(M1)
 
 m=0
-while m<=7:
+while m<=3:
     if P2[m][0]==0:
         P2[m][0]+=0.000000001
 #逆運動学計算↓
